@@ -1,0 +1,23 @@
+{
+  "name": "wcravens_website",
+  "authors": [
+    "Wes Cravens <wcravens@cortex-it.com>"
+  ],
+  "description": "Wes Cravens website, references and blog.",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "http://wcravens.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "paper-elements": "PolymerElements/paper-elements#^1.0.7",
+    "paper-collapse": "^1.0.0"
+  }
+}
