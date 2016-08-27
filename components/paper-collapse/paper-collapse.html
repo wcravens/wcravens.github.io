@@ -1,0 +1,110 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="/bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="/bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="/bower_components/font-roboto/roboto.html">
+<dom-module id="paper-collapse">
+  <template>
+		<style>
+			:host {
+				display: block;
+				border-top: 1px solid transparent;
+				border-bottom: 1px solid transparent;
+				margin-top: -1px;
+			}
+
+			#toolbar:hover {
+				cursor: pointer;
+			}
+
+			#labelIcon {
+				color: #757575;
+				margin-right: 30px;
+			}
+
+			:host([opened]) #labelIcon,
+			:host([opened]) #label {
+				color: #2A9AF2;
+			}
+
+			#label {
+				padding-right: 30px;
+				line-height: 24px;
+				@apply(--layout-flex);
+			}
+
+			#closedIcon,
+			#openedIcon {
+				color: #B4B4B4;
+			}
+     
+      #ellipses { 
+        user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+      } 
+		</style>
+			<div id="toolbar" on-click="toggle">
+				<template is="dom-if" if="{{labelIcon}}">
+					<iron-icon icon="{{labelIcon}}" id="labelIcon"></iron-icon>
+				</template>
+				<div id="label">{{label}}</div>
+				<iron-icon icon="{{closedIcon}}" id="closedIcon" hidden$="{{opened}}"></iron-icon>
+        <span id="ellipses" hidden$="{{opened}}">...</span>
+				<iron-icon icon="{{openedIcon}}" id="openedIcon" hidden$="{{!opened}}"></iron-icon>
+			</div>
+			<iron-collapse id="collapse" opened$="{{opened}}">
+				<content></content>
+			</iron-collapse>
+  </template>
+	<script>
+		Polymer(
+			{
+				close: function () {
+					this.opened = false;
+				},
+				open: function () {
+					this.opened = true;
+				},
+				properties: {
+					closedIcon: {
+						type: String,
+						value: 'expand-more'
+					},
+					label: {
+						type: String,
+						value: ''
+					},
+					labelIcon: {
+						type: String,
+						value: ''
+					},
+					opened: {
+						type: Boolean,
+						value: false,
+						reflectToAttribute: true,
+						notify: true
+					},
+					openedIcon: {
+						type: String,
+						value: 'expand-less'
+					}
+				},
+				ready: function () {
+					this.$.collapse.addEventListener(
+						'tap',
+						function (event) {
+							event.stopPropagation();
+						}
+					);
+				},
+				toggle: function () {
+					this.opened = !this.opened;
+				}
+			}
+		);
+	</script>
+</dom-module>
