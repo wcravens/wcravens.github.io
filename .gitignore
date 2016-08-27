@@ -1,3 +1,15 @@
-# Vim temp files
+# Vim
 *.swp
 *.swo
+
+# JetBrains 
+.idea
+
+# Bower
+bower_components
+
+# Node
+node_modules
+
+# NPM
+npm-debug.log
