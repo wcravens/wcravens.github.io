@@ -6,7 +6,7 @@
 .idea
 
 # Bower
-bower_components
+# bower_components
 
 # Node
 node_modules
